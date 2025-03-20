@@ -21,9 +21,8 @@ class Base {
         cout << "value at ptr:" << *ptr << endl;
     }
 
-    Base& operator=(const Base& other) {
+    Base operator=(const Base& other) {
         this->ptr = other.ptr;
-
         return *this;
     }
     ~Base() {
