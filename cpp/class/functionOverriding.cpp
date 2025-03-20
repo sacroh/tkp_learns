@@ -4,11 +4,15 @@ using namespace std;
 class Car {
     public:
     virtual void carBrand(string /*other*/) = 0;
+    
+    virtual void carModel() final {                // 
+        cout << "Car model not designed " << endl;
+    }
 };
 
 class Ford : public Car {
     public:
-    void carBrand(string branndName) {
+    void carBrand(string brandName)  override {
         cout << " Ford cars" << endl;
     }
 };
