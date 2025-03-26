@@ -1,0 +1,142 @@
+A heap is a special type of binary tree that satisfies a particular ordering property. There are two main types of heaps: Max-Heap and Min-Heap. These are used to efficiently access the largest or smallest element, respectively.
+
+1. Max-Heap:
+Property: In a Max-Heap, for every node, the value of the node is greater than or equal to the values of its children.
+
+This means the largest element is always at the root of the tree.
+
+If you continue down the tree, each parent node will be greater than or equal to its children.
+
+Example Structure:
+
+       50
+      /  \
+    30    40
+   /  \   /
+  10   20 15
+Here, 50 is the root and is greater than its children 30 and 40, and this property holds recursively for all nodes.
+
+Operations:
+
+Insertion: When a new element is added, it is placed at the next available position in the tree (usually a leaf). After adding it, the heap property is maintained by "bubbling up" the new element (comparing with its parent and swapping if necessary).
+
+Deletion (Extract Max): To remove the maximum element (which is at the root), the last element in the heap is moved to the root. The heap property is then restored by "bubbling down" (comparing with the children and swapping to maintain the max-heap property).
+
+2. Min-Heap:
+Property: In a Min-Heap, for every node, the value of the node is less than or equal to the values of its children.
+
+This means the smallest element is always at the root of the tree.
+
+Each parent node will be less than or equal to its children.
+
+Example Structure:
+
+       10
+      /  \
+    20    30
+   /  \   /
+  40   50 60
+Here, 10 is the root and is less than its children 20 and 30, and this property holds recursively for all nodes.
+
+Operations:
+
+Insertion: When a new element is added, it is placed at the next available position (leaf). The heap property is maintained by "bubbling up" the new element (comparing with its parent and swapping if necessary).
+
+Deletion (Extract Min): To remove the minimum element (which is at the root), the last element in the heap is moved to the root. The heap property is then restored by "bubbling down" (comparing with the children and swapping to maintain the min-heap property).
+
+Key Differences Between Max-Heap and Min-Heap:
+Property	Max-Heap	Min-Heap
+Root	Contains the largest element	Contains the smallest element
+Parent-Child Relation	Parent node is greater than or equal to its children	Parent node is less than or equal to its children
+Use Case	Used when we need quick access to the maximum element	Used when we need quick access to the minimum element
+Operations in Both Heaps:
+Insert: Insert a new element while maintaining the heap property.
+
+Max-Heap: After insertion, bubble up to maintain the max-heap property.
+
+Min-Heap: After insertion, bubble up to maintain the min-heap property.
+
+Extract Max (Max-Heap) or Extract Min (Min-Heap): Remove the root (max or min element), replace it with the last element in the heap, and then bubble down to restore the heap property.
+
+Max-Heap: After extracting the root, the largest element is restored by bubbling down the last element.
+
+Min-Heap: After extracting the root, the smallest element is restored by bubbling down the last element.
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _                                                                                                   |
+| Example Code in C++ for Max-Heap and Min-Heap:                                                              |
+| Max-Heap:                                                                                                   |
+|                                                                                                             |
+| #include <iostream>                                                                                         |
+| #include <queue>                                                                                            |
+| using namespace std;                                                                                        |
+|                                                                                                             |
+| int main() {                                                                                                |
+|     // Creating a max-heap using priority_queue (default is max-heap)                                       |
+|     priority_queue<int> maxHeap;                                                                            |
+|                                                                                                             |
+|     // Inserting elements                                                                                   |
+|     maxHeap.push(10);                                                                                       |
+|     maxHeap.push(20);                                                                                       |
+|     maxHeap.push(5);                                                                                        |
+|     maxHeap.push(15);                                                                                       |
+|                                                                                                             |
+|     // Extracting elements (the largest element comes out first)                                            |
+|     while (!maxHeap.empty()) {                                                                              |
+|         cout << maxHeap.top() << " ";  // Output the max element (root)                                     |
+|         maxHeap.pop();  // Remove the max element                                                           |
+|     }                                                                                                       |
+|                                                                                                             | 
+|     return 0;                                                                                               |
+| }                                                                                                           |
+| Output:                                                                                                     |
+|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+| Copy                                                                                                        |
+| 20 15 10 5                                                                                                  |
+| Min-Heap:                                                                                                   |
+| cpp                                                                                                         |
+| Copy                                                                                                        |
+| _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ |
+| #include <iostream>                                                                                         |
+| #include <queue>                                                                                            |
+| using namespace std;                                                                                        |
+|                                                                                                             |
+| int main() {                                                                                                |
+|     // Creating a min-heap by specifying std::greater<int>                                                  |
+|     priority_queue<int, vector<int>, greater<int>> minHeap;                                                 |
+|                                                                                                             |
+|     // Inserting elements                                                                                   |
+|     minHeap.push(10);                                                                                       |
+|     minHeap.push(20);                                                                                       |
+|     minHeap.push(5);                                                                                        |
+|     minHeap.push(15);                                                                                       |
+|                                                                                                             |
+|     // Extracting elements (the smallest element comes out first)                                           |
+|     while (!minHeap.empty()) {                                                                              |
+|         cout << minHeap.top() << " ";  // Output the min element (root)                                     |
+|         minHeap.pop();  // Remove the min element                                                           |
+|     }                                                                                                       |
+|                                                                                                             |
+|     return 0;                                                                                               |
+| }                                                                                                           |
+| _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ |                                                                                                        |
+| Output:                                                                                                     |
+|                                                                                                             | 
+| Copy                                                                                                        |
+| 5 10 15 20                                                                                                  |
+| Use Cases:                                                                                                  |
+| Max-Heap:                                                                                                   |
+|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _|
+Useful in algorithms where you need to repeatedly access the maximum element, such as heap sort, priority sched                                                                                                   |uling, Dijkstra’s algorithm, etc.
+
+Min-Heap:
+
+Useful in algorithms where you need to repeatedly access the minimum element, such as Prim's algorithm, Huffman coding, and priority scheduling.
+
+Summary:
+A Max-Heap is a binary tree where each parent node is larger than its children, and the largest element is at the root.
+
+A Min-Heap is a binary tree where each parent node is smaller than its children, and the smallest element is at the root.
+
+Heaps are particularly useful in algorithms that require efficient access to the largest or smallest element.
+
+
+
